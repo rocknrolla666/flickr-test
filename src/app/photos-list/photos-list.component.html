@@ -1,0 +1,36 @@
+<ng-container *ngIf="photosState$ | async as photosState">
+    <div class="search-container">
+        <form [formGroup]="searchForm">
+            <mat-form-field>
+                <input matInput placeholder="Type to search..." formControlName="searchInput">
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div>
+        <ng-container *ngIf="photosState.pagerState as pagerState">
+            <mat-paginator
+                [length]="pagerState.length"
+                [pageIndex]="pagerState.pageIndex"
+                [pageSize]="pagerState.pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="onPage($event)">
+            </mat-paginator>
+        </ng-container>
+
+        <div class="photos-container">
+            <ng-container *ngFor="let photo of photosState.photos">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{photo.title}}</mat-card-title>
+                    </mat-card-header>
+                      <img mat-card-image src="{{photo.url}}" alt="{{photo.title}}">
+                </mat-card>
+            </ng-container>
+        </div>
+
+        <ng-container *ngIf="!photosState.photos.length">
+            <div class="empty-photos-list">No photos found..</div>
+        </ng-container>
+    </div>
+</ng-container>

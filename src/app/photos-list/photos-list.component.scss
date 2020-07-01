@@ -1,0 +1,25 @@
+.photos-container {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 20px;
+
+    mat-card {
+        max-width: 300px;
+        margin: 12px;
+    }
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.empty-photos-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
